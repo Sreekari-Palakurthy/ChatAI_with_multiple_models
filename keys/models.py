@@ -1,16 +1,15 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, DateTime, func
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
+from common import CommonBase
+from databases import Base
 from sqlalchemy.dialects.postgresql import UUID
-import uuid
 
-Base = declarative_base()
-
-class Key(Base):
+class Key(CommonBase, Base):
     __tablename__ = 'keys'
-    key_id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    user_id = Column(UUID(as_uuid=True), ForeignKey('users.user_id'), unique=True)
-    key_value = Column(String, nullable=False)
-    created_at = Column(DateTime, default=func.now())
-    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    
+    anthropic_apikey = Column(String, nullable=False)
+    openai_apikey = Column(String, nullable=False)
+    mistral_apikey = Column(String, nullable=False)
+    user_id = Column(UUID(as_uuid=True), ForeignKey('users.id'), unique=True)
+    
     user = relationship("User", back_populates="key")
