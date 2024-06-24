@@ -1,7 +1,6 @@
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from database import Base
-from common import Base
+from app.common.utils import Base
 
 class User(Base):
     __tablename__ = "users"
