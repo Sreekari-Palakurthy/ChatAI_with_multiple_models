@@ -7,8 +7,10 @@ class MessageBase(BaseModel):
     role: str
     content: str
 
-class MessageCreate(MessageBase):
-    pass
+class MessageCreate(BaseModel):
+    thread_id: UUID
+    role: str
+    content: str
 
 class MessageUpdate(MessageBase):
     pass
