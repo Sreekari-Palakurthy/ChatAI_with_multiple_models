@@ -1,20 +1,22 @@
-from pydantic import BaseModel,EmailStr
+from pydantic import BaseModel
 from uuid import UUID
-from datetime import datetime
 
 class MessageBase(BaseModel):
-    content: str
+    thread_id: UUID
+    role: str
 
 class MessageCreate(MessageBase):
-    thread_id: UUID
-    user_id: UUID
+    pass
 
-class Message(MessageBase):
-    message_id: UUID
-    thread_id: UUID
-    user_id: UUID
-    created_at: datetime
-    updated_at: datetime
+class MessageInDBBase(MessageBase):
+    id: UUID
+    is_active: bool
 
     class Config:
         orm_mode = True
+
+class Message(MessageInDBBase):
+    pass
+
+class MessageInDB(MessageInDBBase):
+    pass
