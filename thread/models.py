@@ -5,6 +5,8 @@ from sqlalchemy.dialects.postgresql import UUID
 
 class Thread(Base):
     __tablename__ = "threads"
-    owner_id = Column(UUID(as_uuid=True), ForeignKey("users.id"))
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"))
+    title=Column(String)
+    description=Column(String)
     owner = relationship("User", back_populates="threads")
     messages = relationship("Message", back_populates="thread")
