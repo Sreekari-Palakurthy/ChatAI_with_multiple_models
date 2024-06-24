@@ -4,3 +4,4 @@ sqlalchemy
 databases
 passlib
 pydantic
+alembic
