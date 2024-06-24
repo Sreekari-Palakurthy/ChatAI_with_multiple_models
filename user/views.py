@@ -7,7 +7,6 @@ from typing import List
 
 router = APIRouter()
 
-# Dependency
 def get_db():
     db = SessionLocal()
     try:
