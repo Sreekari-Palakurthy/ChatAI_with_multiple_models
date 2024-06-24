@@ -2,3 +2,5 @@ fastapi
 uvicorn
 sqlalchemy
 databases
+passlib
+pydantic
