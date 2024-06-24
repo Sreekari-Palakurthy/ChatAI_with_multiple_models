@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.database import engine
+from database import engine
 from common import Base as CommonBase
 from user import models as user_models
 from keys import models as key_models
