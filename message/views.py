@@ -24,3 +24,10 @@ def read_message(message_id: UUID, db: Session = Depends(get_db)):
     if db_message is None:
         raise HTTPException(status_code=404, detail="Message not found")
     return db_message
+
+@router.post("/messages/thread/{thread_id}", response_model=List[schemas.Message])
+def get_all_thread_messages(thread_id: UUID, db: Session = Depends(get_db)):
+    db_messages = crud.get_all_thread_messages(db, thread_id=thread_id)
+    if not db_messages:
+        raise HTTPException(status_code=404, detail="No messages found for this thread")
+    return db_messages
