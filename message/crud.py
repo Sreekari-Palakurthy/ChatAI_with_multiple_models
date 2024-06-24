@@ -9,7 +9,8 @@ def get_message(db: Session, message_id: UUID):
 def create_message(db: Session, message: MessageCreate):
     db_message = Message(
         thread_id=message.thread_id,
-        role=message.role
+        role=message.role,
+        content=message.content
     )
     db.add(db_message)
     db.commit()
