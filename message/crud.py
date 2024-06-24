@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from message.models import Message
-from message.schemas import MessageCreate
+from message.schemas import MessageCreate, MessageUpdate
 from uuid import UUID
 
 def get_message(db: Session, message_id: UUID):
