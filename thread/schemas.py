@@ -1,18 +1,21 @@
-from pydantic import BaseModel,EmailStr
+from pydantic import BaseModel
 from uuid import UUID
-from datetime import datetime
 
 class ThreadBase(BaseModel):
-    title: str
+    owner_id: UUID
 
 class ThreadCreate(ThreadBase):
-    created_by: UUID
+    pass
 
-class Thread(ThreadBase):
-    thread_id: UUID
-    created_by: UUID
-    created_at: datetime
-    updated_at: datetime
+class ThreadInDBBase(ThreadBase):
+    id: UUID
+    is_active: bool
 
     class Config:
         orm_mode = True
+
+class Thread(ThreadInDBBase):
+    pass
+
+class ThreadInDB(ThreadInDBBase):
+    pass
