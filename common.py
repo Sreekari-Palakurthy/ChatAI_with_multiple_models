@@ -1,13 +1,11 @@
 import uuid
-from sqlalchemy import Column, DateTime, Boolean
-from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.sql import func
+from datetime import datetime
+from sqlalchemy import Column, String, Boolean, DateTime
+from sqlalchemy.ext.declarative import as_declarative
 
-def generate_uuid():
-    return uuid.uuid4()
-
-class CommonBase:
-    id = Column(UUID(as_uuid=True), primary_key=True, default=generate_uuid, index=True)
+@as_declarative()
+class Base:
+    id = Column(String, primary_key=True, index=True, default=lambda: str(uuid.uuid4()))
     is_active = Column(Boolean, default=True)
-    created_at = Column(DateTime, default=func.now())
-    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
