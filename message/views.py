@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from database import SessionLocal
 from message import crud, schemas
 from uuid import UUID
+from typing import List
 
 router = APIRouter()
 
