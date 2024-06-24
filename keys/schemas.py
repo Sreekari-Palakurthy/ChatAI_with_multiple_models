@@ -1,10 +1,11 @@
-from pydantic import BaseModel,EmailStr
+from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime
 
-
 class KeyBase(BaseModel):
-    key_value: str
+    anthropic_apikey: str
+    openai_apikey: str
+    mistral_apikey: str
 
 class KeyCreate(KeyBase):
     user_id: UUID
@@ -12,6 +13,7 @@ class KeyCreate(KeyBase):
 class Key(KeyBase):
     key_id: UUID
     user_id: UUID
+    is_active: bool
     created_at: datetime
     updated_at: datetime
 
