@@ -3,6 +3,7 @@ from user.models import User
 from user.schemas import UserCreate, UserUpdate
 from uuid import UUID
 from datetime import datetime
+import uuid
 
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
@@ -16,7 +17,7 @@ def create_user(db: Session, user: UserCreate):
         name=user.name,
         email=user.email,
         phone_number=user.phone_number,
-        hashed_password=hash_password(user.password),
+        password=hash_password(user.password),
         is_active=True
     )
     db.add(db_user)
