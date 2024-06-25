@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from uuid import UUID
-from datetime import datetime
+from common_app.base_schema import BaseSchema
 
 class ThreadBase(BaseModel):
     title: str
@@ -13,11 +13,11 @@ class ThreadCreate(ThreadBase):
 class ThreadUpdate(ThreadBase):
     pass
 
-class Thread(ThreadBase):
-    id: UUID
-    is_active: bool
-    created_at: datetime
-    updated_at: datetime
+class ThreadInDBBase(ThreadBase, BaseSchema):
+    pass
 
-    class Config:
-        orm_mode = True
+class Thread(ThreadInDBBase):
+    pass
+
+class ThreadInDB(ThreadInDBBase):
+    pass
