@@ -1,10 +1,12 @@
-from pydantic import BaseModel, EmailStr
-from typing import Optional
+from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime
 
 class BaseSchema(BaseModel):
-    id: Optional[UUID]
-    is_active: Optional[bool]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    id:UUID
+    is_active: bool
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
