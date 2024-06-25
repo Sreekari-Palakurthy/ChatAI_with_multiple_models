@@ -53,12 +53,10 @@ def validate_anthropic_key_view():
 def get_mistral_models_view():
     return get_mistral_models()
 
-# Add similar endpoint for Mistral API when implemented
-
 @router.get("/users/models/", response_model=dict)
 def get_all_models():
     return {
         "openai_models": get_openai_models(),
-        "mistral_models": [],  # Placeholder
-        "anthropic_models": []  # Placeholder
+        "mistral_models": get_mistral_models(),
+        "anthropic_models": validate_anthropic_key_view()
     }
