@@ -3,15 +3,9 @@ from sqlalchemy.orm import Session
 from database import SessionLocal
 from keys import crud, schemas
 from uuid import UUID
+from dependencies import get_db
 
 router = APIRouter()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.post("/keys/", response_model=schemas.Key)
 def create_key(key: schemas.KeyCreate, user_id: UUID, db: Session = Depends(get_db)):
