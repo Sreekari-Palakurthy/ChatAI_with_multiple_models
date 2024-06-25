@@ -1,6 +1,6 @@
 from pydantic import BaseModel,EmailStr
 from uuid import UUID
-from common_app.base_schema import BaseSchema
+from common.schema import BaseSchema
 
 
 class UserBase(BaseSchema):
