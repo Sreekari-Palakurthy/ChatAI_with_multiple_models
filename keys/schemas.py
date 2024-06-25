@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 from uuid import UUID
+from common_app.base_schema import BaseSchema 
 
 class KeyBase(BaseModel):
     anthropic_apikey: Optional[str] = None
@@ -15,13 +16,8 @@ class KeyCreate(KeyBase):
 class KeyUpdate(KeyBase):
     pass
 
-class KeyInDBBase(KeyBase):
-    id: UUID
-    is_active: bool
+class KeyInDBBase(KeyBase, BaseSchema):
     user_id: UUID
-
-    class Config:
-        orm_mode = True
 
 class Key(KeyInDBBase):
     pass
