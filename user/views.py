@@ -5,6 +5,7 @@ from user import crud, schemas
 from uuid import UUID
 from common.connection import get_db
 from typing import List
+from user.models import User
 
 router = APIRouter()
 
@@ -36,3 +37,11 @@ def soft_delete_user(user_id: UUID, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return crud.soft_delete_user(db=db, user_id=user_id)
+
+@router.get("/users/models/", response_model=List[schemas.ModelDescription])
+def get_models():
+    models = []
+    for attr in dir(User):
+        if not attr.startswith('_'):
+            models.append(schemas.ModelDescription(name=attr, description=str(getattr(User, attr))))
+    return models
