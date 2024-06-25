@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 from uuid import UUID
-from common_app.base_schema import BaseSchema 
+from common.schema import BaseSchema 
 
 class KeyBase(BaseModel):
     anthropic_apikey: Optional[str] = None
