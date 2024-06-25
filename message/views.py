@@ -4,16 +4,9 @@ from database import SessionLocal
 from message import crud, schemas
 from uuid import UUID
 from typing import List
+from dependencies import get_db
 
 router = APIRouter()
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.post("/messages/", response_model=schemas.Message)
 def create_message(message: schemas.MessageCreate, db: Session = Depends(get_db)):
