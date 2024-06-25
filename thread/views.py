@@ -4,16 +4,10 @@ from database import SessionLocal
 from thread import crud, schemas
 from uuid import UUID
 from typing import List
+from dependencies import get_db
 
 router = APIRouter()
 
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.post("/threads/", response_model=schemas.Thread)
 def create_thread(thread: schemas.ThreadCreate, db: Session = Depends(get_db)):
