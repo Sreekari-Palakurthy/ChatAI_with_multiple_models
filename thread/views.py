@@ -4,7 +4,7 @@ from database import SessionLocal
 from thread import crud, schemas
 from uuid import UUID
 from typing import List
-from dependencies import get_db
+from common_app.dependencies import get_db
 
 router = APIRouter()
 
