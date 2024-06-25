@@ -1,26 +1,24 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel,EmailStr
 from uuid import UUID
-from datetime import datetime
+from common_app.base_schema import BaseSchema
 
-class UserBase(BaseModel):
-    name: str
+
+class UserBase(BaseSchema):
+    name:str
     email: EmailStr
     phone_number: int
-    
 
 class UserCreate(UserBase):
     password: str
 
 class UserUpdate(UserBase):
-    name: str = None
-    email: EmailStr = None
-    phone_number: str = None
+    password:str
 
 class User(UserBase):
     id: UUID
-    is_active: bool
-    created_at: datetime
-    updated_at: datetime
+    name: str
+    email: EmailStr
+    phone_number: int
 
     class Config:
         orm_mode = True
