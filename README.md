@@ -1,1 +1,2 @@
 # ChatAI_with_multiple_models
+ChatAI_with_multiple_models is a cutting-edge platform that seamlessly integrates Mistral, OpenAI, and Anthropic AI models for AI-powered conversations, offering flexibility, individualized responses, and enhanced interactions.Ideal for developers, companies, and AI enthusiasts who want to use a single, potent chat application to leverage the combined intelligence of top-tier AI models.
