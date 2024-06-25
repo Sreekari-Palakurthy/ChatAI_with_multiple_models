@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-from common import Base
+from common.models import Base
 from sqlalchemy.dialects.postgresql import UUID
 
 class Message(Base):
