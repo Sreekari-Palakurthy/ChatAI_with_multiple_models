@@ -3,16 +3,11 @@ from sqlalchemy.orm import Session
 from database import SessionLocal
 from user import crud, schemas
 from uuid import UUID
+from dependencies import get_db
 from typing import List
 
 router = APIRouter()
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
