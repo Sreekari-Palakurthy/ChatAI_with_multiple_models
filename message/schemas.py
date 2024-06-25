@@ -1,25 +1,23 @@
 from pydantic import BaseModel
 from uuid import UUID
-from datetime import datetime
+from common_app.base_schema import BaseSchema
 
 class MessageBase(BaseModel):
     thread_id: UUID
     role: str
     content: str
 
-class MessageCreate(BaseModel):
-    thread_id: UUID
-    role: str
-    content: str
+class MessageCreate(MessageBase):
+    pass
 
 class MessageUpdate(MessageBase):
     pass
 
-class Message(MessageBase):
-    id: UUID
-    is_active: bool
-    created_at: datetime
-    updated_at: datetime
+class MessageInDBBase(MessageBase, BaseSchema):
+    pass
 
-    class Config:
-        orm_mode = True
+class Message(MessageInDBBase):
+    pass
+
+class MessageInDB(MessageInDBBase):
+    pass
