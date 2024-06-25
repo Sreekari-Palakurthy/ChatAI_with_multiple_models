@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from database import engine
-from common import Base as CommonBase
+from common.connection import engine
+from common.models import Base as CommonBase
 from user import models as user_models
 from keys import models as key_models
 from thread import models as thread_models
